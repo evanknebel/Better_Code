@@ -5,7 +5,7 @@
 #include <cmath>
 #include <cfloat>
 
-float vec2::operator[](unsigned idx)
+float &vec2::operator[](unsigned idx)
 {
 	return v[idx];
 }

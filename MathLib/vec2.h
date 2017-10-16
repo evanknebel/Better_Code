@@ -8,7 +8,8 @@ union vec2
 	// access by individual component
 	struct { float x, y; };
 
-	float operator[](unsigned idx);
+	// access to vec2 by index
+	float &operator[](unsigned idx);
 	float operator[](unsigned idx) const;
 };
 
