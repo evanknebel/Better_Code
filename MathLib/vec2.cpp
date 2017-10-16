@@ -153,3 +153,4 @@ vec2 max(const vec2 &a, const vec2 &b)
 
 	return temp;
 }
+

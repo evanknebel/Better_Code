@@ -1,13 +1,13 @@
 #include "mathutils.h"
 #include "vec2.h"
-
+#include "vec3.h"
 #include <iostream>
 #include <cassert>
 
 int main()
 {
     // equality and inequality
-    {
+    /*{
         vec2 a = { 5,3 };
         vec2 b = { 4,2 };
         vec2 c = { 0,1 };
@@ -38,5 +38,14 @@ int main()
     bool eq = num == test;
     bool ieq = num == testB;
 
-    std::cout << "ALL TESTS OK" << std::endl;
+    std::cout << "ALL TESTS OK" << std::endl;*/
+
+	vec3 minClamp{ 1,1,1 };
+	vec3 maxClamp{ 5,5,5 };
+	vec3 Value{ 0,6,3 };
+
+	vec3 result = clamp(minClamp, Value, maxClamp); 
+
+
+	while (true) {}
 }
