@@ -26,7 +26,7 @@ mat3 operator+(const mat3 &A, const mat3 &B); // not really used O__O
 mat3 operator-(const mat3 &A, const mat3 &B); // not really used O__O
 
 mat3 operator*(const mat3 &A, const mat3 &B); // combine transformations
-mat3 operator*(const mat3 &A, const vec3 &V); // apply a transformation
+vec3 operator*(const mat3 &A, const vec3 &V); // apply a transformation
 
 mat3 transpose(const mat3 &A); // flip the rows and columns!
 
