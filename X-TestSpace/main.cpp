@@ -49,3 +49,26 @@ int main()
 
 	while (true) {}
 }
+
+
+class Vector3 { float x, y, z; };
+
+
+class Matrix3x3
+{
+
+public:
+	Matrix3x3 GetTranspose() const;
+	float GetDeterminant() const;
+	Matrix3x3 GetInverse() const;
+
+	Matrix3x3 operator*(const Matrix3x3 &rhs) const;
+	Vector3 operator*(const Vector3 &rhs) const;
+
+	Vector3 &operator[](size_t idx); // column accessor
+	const Vector3 &operator[](size_t idx) const;
+
+	Matrix3x3(); // default to identity matrix
+private:
+	Vector3 c[3];
+};
