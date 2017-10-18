@@ -44,3 +44,6 @@ float dist(const vec3 &a, const vec3 &b);
 vec3 min(const vec3 &a, const vec3 &b);
 vec3 max(const vec3 &a, const vec3 &b);
 vec3 clamp(const vec3 &a_min, const vec3 &v, const vec3 & a_max);
+
+
+vec3 cross(const vec3 &a, const vec3 &b);

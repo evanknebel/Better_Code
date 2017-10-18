@@ -86,8 +86,8 @@ vec2 &operator/=(vec2 &lhs, float &rhs)
 
 bool operator==(const vec2 &lhs, const vec2 &rhs)
 {
-	if (abs(lhs.x - rhs.x) < FLT_EPSILON &&
-		abs(lhs.y - rhs.y) < FLT_EPSILON)
+	if (abs(lhs.x - rhs.x) <= EPSILON &&
+		abs(lhs.y - rhs.y) <= EPSILON)
 	{
 		return true;
 	}
