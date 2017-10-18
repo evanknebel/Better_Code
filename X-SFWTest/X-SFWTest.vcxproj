@@ -127,10 +127,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyGuy.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyGuy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="transform.h" />
   </ItemGroup>
