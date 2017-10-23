@@ -11,7 +11,7 @@ public:
 	myGuy(float speed, float rotSpeed, vec2 pos, vec2 dim, float anglez);
 
 
-	void update(const mat3 & t);
+	void update(/*const mat3 & t*/);
 	void draw(const mat3 & t);
 
 

@@ -10,37 +10,47 @@ int main()
 {
 	sfw::initContext();
 
+	myGuy me(3, 5, vec2{ 300, 400 }, vec2{ 256,256 }, 0);
 
+	Transform tran_background = { {400,300},{800,600}, 0}; //pos,dim,ang
 
-	myGuy me(3, 1, vec2{ 300, 400 }, vec2{ 1,1 }, 0);
+	Transform tran_tree1 = { { 200,300 },{ 72,72 }, 0 };
+	Transform tran_tree2 = { { 400,500 },{ 72,72 }, 0 };
+	Transform tran_tree3 = { { 700,200 },{ 72,72 }, 0 };
+	Transform tran_tree4 = { { 100,100 },{ 72,72 }, 0 };
 	
-	/*Transform myTransform;
-	myTransform.position = vec2{ 400,300 };
-	myTransform.dimension = vec2{ 2,2 };
-	myTransform.angle = 0;
-	
-	
-	Transform myBaby;
-	myBaby.position = vec2{ 100,0 };
-	myBaby.dimension = vec2{ 1,1 };
-	myBaby.angle = 0;
-	myBaby.e_parent = &myTransform;*/
-	
+
+	unsigned sprite_background = sfw::loadTextureMap("../resources/back.jpg");
+	unsigned sprite_tree = sfw::loadTextureMap("../resources/Giant_Tree.png");
+	unsigned sprite_ship = sfw::loadTextureMap("../resources/classic_ship.png");
+
+	// adjust space so that screen center is 0,0 and dimensions are 250,250
+
 	while (sfw::stepContext())
 	{
-	//Rotate your object around clockwise
-		float t = sfw::getTime();
+		// player's position (third column is for translation)
+		vec2 target = me.myTrans.getGlobalTransform()[2].xy;
 
+		// clamp between 0,0 and 600,400  to restrict the camera from going off-screen
+		target = max(vec2{ 0,0 }, min(target, vec2{ 600,400 }));
 
-		me.update(me.myTrans.getGlobalTransform());
-		me.draw(me.myTrans.getGlobalTransform());
-		//myTransform.angle += sfw::getDeltaTime() * 90;
-		//myTransform.dimension = vec2{ sinf(t) + 2, sinf(t) + 2 };
+		// screen offset * zoom factor
+		mat3 proj = translate({ 400, 300 }) * scale({ .2f,.2f });
+		mat3 view = inverse(translate(target));
+		
+		mat3 cam =  proj * view;
 
-		DrawMatrix(me.myTrans.getGlobalTransform(), 40);
-		//DrawMatrix(myBaby.getGlobalTransform(), 30);
+		DrawTexture(sprite_background, cam * tran_background.getGlobalTransform());
+		
+		DrawTexture(sprite_tree, cam * tran_tree1.getGlobalTransform());
+		DrawTexture(sprite_tree, cam * tran_tree2.getGlobalTransform());
+		DrawTexture(sprite_tree, cam * tran_tree3.getGlobalTransform());
+		DrawTexture(sprite_tree, cam * tran_tree4.getGlobalTransform());
+
+		DrawTexture(sprite_ship, cam * me.myTrans.getGlobalTransform());
+ 
+		me.update();
 	}
-
 	sfw::termContext();
 }
 

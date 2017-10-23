@@ -10,8 +10,10 @@ myGuy::myGuy(float speed, float rotSpeed, vec2 pos, vec2 dim, float anglez)
 	myTrans.angle = anglez;
 }
 
-void myGuy::update(const mat3 & t)
+void myGuy::update(/*const mat3 & t*/)
 {
+	mat3 t = myTrans.getGlobalTransform();
+
 	vec2 Dir = norm((t[1].xy)) * Speed;
 	
 	if (sfw::getKey('W'))
@@ -24,11 +26,11 @@ void myGuy::update(const mat3 & t)
 	}
 	if (sfw::getKey('A'))
 	{
-		myTrans.angle -= turnSpeed;
+		myTrans.angle += turnSpeed;
 	}
 	if (sfw::getKey('D'))
 	{
-		myTrans.angle += turnSpeed;
+		myTrans.angle -= turnSpeed;
 	}
 }
 
@@ -37,4 +39,5 @@ void myGuy::draw(const mat3 & t)
 	vec2 pos = t[2].xy;
 
 	sfw::drawCircle(pos.x, pos.y, 20, 12, RED);
+	DrawMatrix(myTrans.getGlobalTransform(), 1);
 }
