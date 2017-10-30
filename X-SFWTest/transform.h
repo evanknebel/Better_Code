@@ -1,12 +1,13 @@
 #pragma once
 #include "vec2.h"
 #include "mat3.h"
+
 class Transform
 {
 public:
-	vec2 position;
-	vec2 dimension;
-	float angle;
+	vec2       position;
+	vec2       dimension;
+	float      angle;
 	Transform *e_parent;
 
 
@@ -17,6 +18,4 @@ public:
 };
 
 void DrawMatrix(const mat3 &t, float drawing_scale);
-
-
 void DrawTexture(unsigned sprite, const mat3 &t);

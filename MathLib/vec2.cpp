@@ -71,13 +71,13 @@ vec2 &operator-=(vec2 &lhs, const vec2 &rhs)
 
 	return lhs;
 }
-vec2 &operator*=(vec2 &lhs, float &rhs)
+vec2 &operator*=(vec2 &lhs, float rhs)
 {
 	lhs = lhs * rhs;
 
 	return lhs;
 }
-vec2 &operator/=(vec2 &lhs, float &rhs)
+vec2 &operator/=(vec2 &lhs, float rhs)
 {
 	lhs = lhs / rhs;
 
