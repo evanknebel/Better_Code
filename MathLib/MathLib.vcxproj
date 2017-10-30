@@ -112,12 +112,14 @@
   <ItemGroup>
     <ClInclude Include="mat3.h" />
     <ClInclude Include="mathutils.h" />
+    <ClInclude Include="shapes.h" />
     <ClInclude Include="vec2.h" />
     <ClInclude Include="vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mat3.cpp" />
     <ClCompile Include="mathutils.cpp" />
+    <ClCompile Include="shapes.cpp" />
     <ClCompile Include="vec2.cpp" />
     <ClCompile Include="vec3.cpp" />
   </ItemGroup>

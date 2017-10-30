@@ -4,6 +4,7 @@
 
 union vec3
 {
+
 	// access by array
 	float v[3];
 	

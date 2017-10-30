@@ -12,7 +12,7 @@ Transform::Transform(vec2 a_pos, vec2 a_dim, float a_ang)
 mat3 Transform::getLocalTransform() const
 {
 
-	return translate(position) * scale(dimension) * rotate(angle);
+	return translate(position)  * rotate(angle) * scale(dimension);
 }
 
 mat3 Transform::getGlobalTransform() const
@@ -29,9 +29,9 @@ mat3 Transform::getGlobalTransform() const
 
 void DrawMatrix(const mat3 & t, float drawing_scale)
 {
-	vec2 pos = t[2].xy;
+	vec2 pos      = t[2].xy;
 	vec2 right_ep = pos + t[0].xy * drawing_scale;
-	vec2 up_ep = pos + t[1].xy * drawing_scale;
+	vec2 up_ep	  = pos + t[1].xy * drawing_scale;
 
 	sfw::drawLine(pos.x, pos.y, right_ep.x, right_ep.y, RED);
 	sfw::drawLine(pos.x, pos.y, up_ep.x, up_ep.y, GREEN);

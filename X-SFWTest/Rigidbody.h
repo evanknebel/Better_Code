@@ -34,7 +34,7 @@ public:
 	
 	}
 
-	
+	// verlet integration may be preferable
 	void integrate(Transform &T, float dt)
 	{
 		// linear motion

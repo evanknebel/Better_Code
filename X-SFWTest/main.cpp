@@ -4,6 +4,8 @@
 #include "MyGuy.h"
 #include "mat3.h"
 #include "Rigidbody.h"
+#include "shapes.h"
+#include "DrawShape.h"
 
 #include <cmath>
 #include <string>
@@ -18,11 +20,17 @@ int main()
 	Transform transform;
 	Rigidbody rigidbody;
 
+	circle circ = { {0,0}, 1 };
+
 	transform.position = vec2{ 400, 300 };
+	transform.dimension = vec2{100,150};
 
 	bool jumped = false;
 	while (sfw::stepContext())
 	{
+		drawCircle(transform.getGlobalTransform() * circ);
+		DrawMatrix(transform.getGlobalTransform(), 1);
+
 		float dt = sfw::getDeltaTime();
 		
 		//rigidbody.force += { 0, -25 }; // gravity
@@ -43,7 +51,7 @@ int main()
 		}
 
 		rigidbody.integrate(transform, dt);
-		DrawMatrix(transform.getGlobalTransform(), 48);
+
 	}
 	sfw::termContext();
 }
