@@ -12,6 +12,7 @@
 #include <string>
 #include <cstring>
 #include <cassert>
+#include "Collider.h"
 
 
 int main()
@@ -58,19 +59,6 @@ int main()
 		//rigidbody.force += { 0, -25 }; // gravity
 
 		// moving jets
-		if (sfw::getKey('W'))rigidbody.force +=
-						transform.getGlobalTransform()[1].xy * 100;
-		if (sfw::getKey('A'))rigidbody.torque +=  360;
-		if (sfw::getKey('D'))rigidbody.torque += -360;
-
-		if(sfw::getKey('Q')) rigidbody.impulse +=
-			-transform.getGlobalTransform()[1].xy * 10;
-
-		if (sfw::getKey(' ')) //breaking force
-		{
-			rigidbody.force += -rigidbody.velocity * 20;
-			rigidbody.torque += -rigidbody.angularVelocity * 20;
-		}
 
 		rigidbody.integrate(transform, dt);
 
