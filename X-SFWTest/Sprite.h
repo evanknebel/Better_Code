@@ -20,7 +20,8 @@ public:
 
 	void draw(const Transform &t, const mat3 &cam = mat3::identity())
 	{
-		mat3 M = cam * t.getGlobalTransform() * translate(offset) * scale(dim);
+		mat3 M = cam * t.getGlobalTransform() 
+					 * translate(offset) * scale(dim);
 
 		sfw::drawTextureMatrix3(handle, 0, WHITE, M.m);
 	}

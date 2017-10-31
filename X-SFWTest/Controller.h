@@ -27,6 +27,5 @@ public:
 			rb.force += -rb.velocity * 20;
 			rb.torque += -rb.angularVelocity * 20;
 		}
-
 	}
 };
