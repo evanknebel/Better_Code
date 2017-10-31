@@ -11,7 +11,6 @@ Transform::Transform(vec2 a_pos, vec2 a_dim, float a_ang)
 
 mat3 Transform::getLocalTransform() const
 {
-
 	return translate(position)  * rotate(angle) * scale(dimension);
 }
 

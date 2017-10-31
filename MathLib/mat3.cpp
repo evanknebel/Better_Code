@@ -59,7 +59,9 @@ mat3 operator*(const mat3 &A, const mat3 &B)
 vec3 operator*(const mat3 &A, const vec3 &B)
 {
 	mat3 At = transpose(A);
-
+	float x = dot(At[0], B);
+	float y = dot(At[1], B);
+	float z = dot(At[2], B);
 	return vec3 { dot(At[0], B),
 				  dot(At[1], B),
 				  dot(At[2], B) };

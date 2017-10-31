@@ -6,6 +6,7 @@
 #include "Rigidbody.h"
 #include "shapes.h"
 #include "DrawShape.h"
+#include "Collision.h"
 
 #include <cmath>
 #include <string>
@@ -21,13 +22,34 @@ int main()
 	Rigidbody rigidbody;
 
 	circle circ = { {0,0}, 1 };
+	AABB box = { {0,0}, {1,1} };
+	transform.position = vec2{ 600, 300 };
+	transform.dimension = vec2{ 30,30 };
 
-	transform.position = vec2{ 400, 300 };
-	transform.dimension = vec2{100,150};
+	AABB box2 = { {400, 300}, {160,160} }; // new box!
+	circle circ2 = {{ 400,300 }, 50};
 
 	bool jumped = false;
 	while (sfw::stepContext())
 	{
+		// Check collision with our box
+		Collision result = intersect_circle(
+		transform.getGlobalTransform() * circ, circ2);
+
+		// change color based on penetration
+		unsigned color = result.penetrationDepth < 0 ? WHITE : RED;
+		// if we overlap, then apply the "minimum translation vector" to the transform
+		if(result.penetrationDepth >= 0)
+		{
+			// prevents overlap
+		transform.position += result.axis * result.handedness * result.penetrationDepth;
+		
+		}
+
+		drawCircle(circ2);
+		//drawAABB(box2,color);
+		//drawAABB(transform.getGlobalTransform() * box, MAGENTA);
+
 		drawCircle(transform.getGlobalTransform() * circ);
 		DrawMatrix(transform.getGlobalTransform(), 1);
 
