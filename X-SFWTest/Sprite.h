@@ -11,7 +11,7 @@ public:
 	vec2 dim;
 	vec2 offset;
 
-	Sprite(int a_handle, int width, int height) : handle(a_handle),
+	Sprite(int a_handle=-1, int width=0, int height = 0) : handle(a_handle),
 												  dim{ width, height },
 												  offset{0, 0}
 	{
