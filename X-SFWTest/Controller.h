@@ -10,22 +10,28 @@ class Controller
 {
 
 public:
+	float turningSpeed;
+	float speed;
+	float brakePower;
+
+	Controller() : turningSpeed(240), speed(120), brakePower(8)
+	{
+
+	}
+
 	void poll(Rigidbody &rb, const Transform &t)
 	{
 
 		if (sfw::getKey('W'))rb.force +=
-			t.getGlobalTransform()[1].xy * 100;
+			norm(t.getGlobalTransform()[1].xy) * speed;
 		
-		if (sfw::getKey('A'))rb.torque += 360;
-		if (sfw::getKey('D'))rb.torque += -360;
-
-		if (sfw::getKey('Q')) rb.impulse +=
-			-t.getGlobalTransform()[1].xy * 10;
+		if (sfw::getKey('A'))rb.torque += turningSpeed;
+		if (sfw::getKey('D'))rb.torque += -turningSpeed;
 
 		if (sfw::getKey(' ')) //breaking force
 		{
-			rb.force += -rb.velocity * 20;
-			rb.torque += -rb.angularVelocity * 20;
+			rb.force += -rb.velocity * brakePower;
+			rb.torque += -rb.angularVelocity * brakePower;
 		}
 	}
 };

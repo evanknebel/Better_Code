@@ -15,3 +15,12 @@ public:
 	Controller  controller;
 	Sprite		sprite;
 };
+
+
+class Wall
+{
+public:
+	Transform transform;
+	Collider collider;
+	Sprite sprite;
+};

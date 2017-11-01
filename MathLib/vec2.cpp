@@ -156,3 +156,12 @@ vec2 max(const vec2 &a, const vec2 &b)
 	return temp;
 }
 
+vec2 project(const vec2 & v, const vec2 & axis)
+{
+	return dot(v, axis) * axis;
+}
+
+vec2 reflect(const vec2 & v, const vec2 & axis)
+{
+	return 2 * project(v, axis) - v;
+}
