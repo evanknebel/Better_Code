@@ -24,3 +24,6 @@ public:
 	Collider collider;
 	Sprite sprite;
 };
+
+
+bool doCollision(Player &player, const Wall &wall);

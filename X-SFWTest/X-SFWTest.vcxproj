@@ -130,6 +130,7 @@
     <ClCompile Include="DrawShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGuy.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>

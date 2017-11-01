@@ -41,21 +41,8 @@ int main()
 		player.sprite.draw(player.transform);
 		wall.sprite.draw(wall.transform);
 
-		auto hit = collides(player.transform, player.collider,
-						    wall.transform, wall.collider);
+		doCollision(player, wall);
 
-		// correction
-		if (hit.penetrationDepth > 0)
-		{
-			// correction
-			player.transform.position += hit.axis*hit.handedness*hit.penetrationDepth;
-
-			//// static collision resolution
-			//auto d = player.rigidbody.velocity;
-			//auto n = hit.axis;
-			//auto r = d - 2*(dot(d, n))*n;
-			//player.rigidbody.velocity = r;
-		}
 
 		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);
 		drawAABB(wall.collider.getGlobalBox(wall.transform), RED);

@@ -19,4 +19,4 @@ Collision intersect_circle(const circle &A, const circle &B);
 
 
 					  //inout
-void static_resolution(vec2 &pos, vec2 &vel, const Collision &hit);
+void static_resolution(vec2 &pos, vec2 &vel, const Collision &hit, float elasticity = 1.0f);
