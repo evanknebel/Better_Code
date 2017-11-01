@@ -14,3 +14,18 @@ bool doCollision(Player & player, const Wall & wall)
 	return false;
 }
 
+
+
+bool doCollision(Ball &ball, const Wall &wall)
+{
+
+	auto hit = collides(ball.transform, ball.collider,
+		wall.transform, wall.collider);
+
+	if (hit.penetrationDepth > 0)
+	{
+		static_resolution(ball.transform.position, ball.rigidbody.velocity, hit);
+		return true;
+	}
+	return false;
+}

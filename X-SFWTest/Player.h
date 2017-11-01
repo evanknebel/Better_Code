@@ -6,7 +6,7 @@
 #include "Controller.h"
 #include "Sprite.h"
 
-class Player
+class Player // dynamic & player controlled
 {
 public:
 	Transform   transform;
@@ -17,7 +17,7 @@ public:
 };
 
 
-class Wall
+class Wall // static rigidbody
 {
 public:
 	Transform transform;
@@ -26,4 +26,16 @@ public:
 };
 
 
+class Ball // dynamic rigidbody
+{
+public:
+	Transform transform;
+	Rigidbody rigidbody;
+	Collider collider;
+	Sprite sprite;
+};
+
+
 bool doCollision(Player &player, const Wall &wall);
+bool doCollision(Ball &ball, const Wall &wall);
+bool doCollision(Player &player, const Ball &wall);
