@@ -47,7 +47,7 @@ int main()
 	{
 		float dt = sfw::getDeltaTime();
 
-		// update controllers
+		// update controllers0
 		player.controller.poll(player.rigidbody, player.transform);
 
 		// update rigibodies
@@ -66,6 +66,8 @@ int main()
 			doCollision(player, walls[i]);
 			doCollision(ball, walls[i]);
 		}
+
+		doCollision(player, ball);
 
 		// Debug boxes
 		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);

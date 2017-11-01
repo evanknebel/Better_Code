@@ -29,3 +29,22 @@ bool doCollision(Ball &ball, const Wall &wall)
 	}
 	return false;
 }
+
+bool doCollision(Player & player, Ball & ball)
+{
+	Collision hit = collides(player.transform, player.collider,
+		ball.transform, ball.collider);
+
+	if (hit.penetrationDepth > 0)
+	{
+		dynamic_resolution(player.transform.position,	
+							player.rigidbody.velocity,
+							player.rigidbody.mass,
+						   ball.transform.position,
+							ball.rigidbody.velocity,
+							ball.rigidbody.mass,
+							hit);
+		return true;
+	}
+	return false;
+}

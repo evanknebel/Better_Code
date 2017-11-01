@@ -67,3 +67,39 @@ void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elas
 	// for velocity, we need to reflect:
 	vel = -reflect(vel, hit.axis*hit.handedness) * elasticity;
 }
+
+void dynamic_resolution(vec2 & Apos, vec2 & Avel, float Amass, 
+						vec2 & Bpos, vec2 & Bvel, float Bmass, 
+						const Collision & hit, float elasticity)
+{
+	// Law of Conservation
+	/*
+		mass*vel = momentum
+	
+	AP + BP = `AP + `BP // Conservation of Momentum
+
+	Avel*Amass + Bvel*Bmass = fAvel*Amass + fBvel*Bmass
+	Avel - Bvel = -(fBvel - fAvel)
+
+	fBvel = Bvel - Avel + fAvel 
+
+	///
+	Avel*Amass +  = fAvel*Amass - Avel*Bmass + fAvel*Bmass	
+	*/
+	
+	vec2 normal = hit.axis * hit.handedness;
+	
+	vec2 Rvel = Avel - Bvel;	
+
+	float j = // impulse
+			  // the total energy applied across the normal
+	   -(1+elasticity)*dot(Rvel, normal) / 
+		dot(normal, normal*(1 / Amass + 1 / Bmass));
+		
+
+	Avel += (j / Amass) * normal;
+	Bvel -= (j / Bmass) * normal;
+
+	Apos += normal * hit.penetrationDepth * Amass/(Amass + Bmass);
+	Bpos -= normal * hit.penetrationDepth * Bmass/(Amass + Bmass);
+}
