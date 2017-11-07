@@ -115,7 +115,7 @@ Swept intersect_swept_1D(float Amin, float Amax, float Avel, float Bmin, float B
 	res.exit = max(tl, tr);
 	res.entry = min(tl, tr);
 
-	res.handedness = copysign(1, tr - tl);
+	res.handedness = copysign(1, tr-tl);
 
 	return res;
 }
@@ -123,38 +123,35 @@ Swept intersect_swept_1D(float Amin, float Amax, float Avel, float Bmin, float B
 
 Swept intersect_ray_AABB(const ray & R, const AABB & B)
 {
-	vec2 cast = (R.direction);
-	bool valid = true;
-
 	Swept result;
 
-	if (cast.x == 0)
+	// axis of the 
+	vec2 raxis = perp(R.direction);
+	float am = dot(R.position, raxis);
+	float bm = B.min(raxis);
+	float bx = B.max(raxis);
+
+	Collision res = intersect_1D(am,am,bm,bx);
+
+	if (res.penetrationDepth < 0)
 	{
-		result = intersect_swept_1D(R.position.y, R.position.y, cast.y, B.min().y, B.max().y, 0);
-		result.axis = { 0,1 };
+		result.entry = 100000;
+		result.exit = -100000;
+		return result;
 	}
+
+
+	Swept yres = intersect_swept_1D(R.position.y, R.position.y, R.direction.y, B.min().y, B.max().y, 0);
+	yres.axis = { 0,1 };
+
+	Swept xres = intersect_swept_1D(R.position.x, R.position.x, R.direction.x, B.min().x, B.max().x, 0);
+	xres.axis = { 1,0 };
 	
-	else if (cast.y == 0)	
-	{		
-		result = intersect_swept_1D(R.position.x, R.position.x, cast.x, B.min().x, B.max().x, 0);
-		result.axis = { 1,0 };
-	}
-
-	else
-	{
-		Swept yres = intersect_swept_1D(R.position.y, R.position.y, cast.y, B.min().y, B.max().y, 0);
-		result.axis = { 0,1 };
-
-		Swept xres = intersect_swept_1D(R.position.x, R.position.x, cast.x, B.min().x, B.max().x, 0);
-		xres.axis = { 1,0 };
-		result = xres.entry > yres.entry ? xres : yres;
-	}
+	//if (yres.entry < 0 || xres.entry < 0)
+//		result = xres.entry < yres.entry ? xres : yres;
+//	else
+		result = xres.entry > yres.entry ? xres : yres;	
+	
 
 	return result;
-}
-
-
-void drawRay(const ray &r)
-{
-
 }

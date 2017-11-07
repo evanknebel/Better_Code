@@ -167,7 +167,7 @@ vec2 project(const vec2 & v, const vec2 & axis)
 
 vec2 reflect(const vec2 & v, const vec2 & axis)
 {
-	return 2 * project(v, axis) - v;
+	return v - 2 * project(v, axis);
 }
 
 float toAngle(const vec2 &v)

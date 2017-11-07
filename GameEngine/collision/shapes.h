@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../linmaths/mat3.h"
+#include <cmath>
 
 struct circle
 {
@@ -20,6 +21,35 @@ struct AABB
 
 	vec2 min() const { return position - extents; }
 	vec2 max() const { return position + extents; }
+
+	float min(const vec2 &axis) const
+	{
+		vec2 p[4] =  { min(),   max(),
+					 { min().x, max().y },
+					 { max().x, min().y } };
+		float d[4];
+		for (int i = 0; i < 4; ++i)
+			d[i] = dot(p[i], axis);
+
+		return fminf( fminf(d[0], d[2]), fminf(d[1], d[3]));
+	}
+
+	float max(const vec2 &axis) const
+	{
+		vec2 p[4] = { min(),max(),
+					{ min().x,max().y },
+					{ max().x,min().y } };
+		float d[4];
+		for (int i = 0; i < 4; ++i)
+			d[i] = dot(p[i], axis);
+
+		return fmaxf(fmaxf(d[0], d[2]), fmaxf(d[1], d[3]));
+	}
+
+	static AABB fromExtents(const vec2 &m, const vec2 &x)
+	{
+		return {(x+m)/2, (x-m)/2};
+	}
 };
 
 
