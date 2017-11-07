@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec2.h"
+#include "../linmaths/vec2.h"
 #include "transform.h"
 #include "sfwdraw.h"
 

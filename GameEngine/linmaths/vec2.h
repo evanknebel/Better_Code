@@ -47,3 +47,5 @@ vec2 reflect(const vec2 &v, const vec2 &axis);
 
 float toAngle(const vec2 &v);
 vec2 fromAngle(float ang);
+
+vec2 randRange(const vec2 &a_min, const vec2 &a_max);

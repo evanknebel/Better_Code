@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "shapes.h"
+#include "../collision/shapes.h"
 #include "transform.h"
-#include "Collision.h"
+#include "../collision/collision.h"
 
 class Collider
 {
@@ -15,15 +15,16 @@ public:
 		return t.getGlobalTransform() * box;
 	}
 
-	Collider(const AABB &a_box = { {0,0},{1,1} }) : box(a_box)
+	Collider(const AABB &a_box = { {0,0},{.5,.5} }) : box(a_box)
 	{
 
 	}
+
+	void Collider::debugDraw(const Transform & At, int color, const mat3 & cam = mat3::identity());
 };
 
 
 Collision collides(const Transform &At, const Collider &Ac,
 				   const Transform &Bt, const Collider &Bc);
-
 
 

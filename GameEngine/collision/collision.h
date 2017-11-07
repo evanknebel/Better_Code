@@ -34,7 +34,6 @@ Swept intersect_ray_AABB(const ray &R, const AABB &B);
 void static_resolution(vec2 &pos, vec2 &vel, const Collision &hit, float elasticity = 1.0f);
 
 
-
 void dynamic_resolution(vec2 & Apos, vec2 & Avel, float Amass,
 						vec2 & Bpos, vec2 & Bvel, float Bmass,
 						const Collision & hit, float elasticity = 1.0f);

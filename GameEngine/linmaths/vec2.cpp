@@ -5,6 +5,8 @@
 #include <cmath>
 #include <cfloat>
 
+#define DEG2RAD 0.0174533
+
 float &vec2::operator[](unsigned idx)
 {
 	return v[idx];
@@ -175,7 +177,13 @@ float toAngle(const vec2 &v)
 
 vec2 fromAngle(float ang)
 {
-	return vec2{cos(ang),sin(ang)};
+	return vec2{cosf(ang*DEG2RAD),sinf(ang*DEG2RAD)};
+}
+
+vec2 randRange(const vec2 & a_min, const vec2 & a_max)
+{
+	return vec2{  (rand() / (float)RAND_MAX) * (a_max.x - a_min.x) + a_min.x,
+				  (rand() / (float)RAND_MAX) * (a_max.y - a_min.y) + a_min.y  };
 }
 
 vec2 clamp(const vec2 &a_min, const vec2 &a_val, const vec2 &a_max)

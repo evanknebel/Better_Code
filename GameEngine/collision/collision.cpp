@@ -19,13 +19,10 @@ Collision intersect_circle_AABB(const circle &A, const AABB &B)
 {
 	vec2 cp = snap(B.min(), A.position, B.max());
 	
-	Collision result = intersect_circle(A, circle{ cp,0 });
+	return intersect_circle(A, circle{ cp,0 });
 }
 
-Swept intersect_ray_AABB(const ray & R, const AABB & B)
-{
-	return Swept();
-}
+
 
 Collision intersect_AABB(const AABB & A, const AABB & B)
 {
@@ -119,6 +116,8 @@ Swept intersect_swept_1D(float Amin, float Amax, float Avel, float Bmin, float B
 	res.entry = min(tl, tr);
 
 	res.handedness = copysign(1, tr - tl);
+
+	return res;
 }
 
 
@@ -154,3 +153,8 @@ Swept intersect_ray_AABB(const ray & R, const AABB & B)
 	return result;
 }
 
+
+void drawRay(const ray &r)
+{
+
+}
