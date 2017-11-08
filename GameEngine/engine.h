@@ -5,6 +5,8 @@
 #include "linmaths\vec3.h"
 #include "linmaths\mat3.h"
 
+#include "draw\draw.h"
+
 #include "collision\shapes.h"
 #include "collision\collision.h"
 

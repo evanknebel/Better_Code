@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="GameObjects.h" />
     <ClInclude Include="LaserBeam.h" />
+    <ClInclude Include="MouseLookController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

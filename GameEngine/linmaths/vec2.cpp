@@ -172,7 +172,7 @@ vec2 reflect(const vec2 & v, const vec2 & axis)
 
 float toAngle(const vec2 &v)
 {
-	return atan2f(v.y, v.x);
+	return 57.2958*atan2f(v.y, v.x);
 }
 
 vec2 fromAngle(float ang)

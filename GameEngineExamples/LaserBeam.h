@@ -16,7 +16,7 @@ public:
 
 
 	// Begins a loop
-	void start();
+	void start(const Transform &a_origin);
 
 	// for the current beam,
 	// consider the next obj

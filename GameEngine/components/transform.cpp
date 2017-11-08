@@ -44,6 +44,8 @@ void Transform::setGlobalPosition(const vec2 & v)
 
 void Transform::setGlobalAngle(float v)
 {
-	angle = toAngle(mulDir(inverse(e_parent->getGlobalTransform()), fromAngle(v)));
+	mat3 par = e_parent ? e_parent->getGlobalTransform() : mat3::identity();
+
+	angle = toAngle(mulDir(inverse(par), fromAngle(v)));
 }
 

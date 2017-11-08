@@ -2,8 +2,11 @@
 #include "draw\draw.h"
 #include "linmaths\vec2.h"
 
-void LaserBeam::start()
+void LaserBeam::start(const Transform &a_origin)
 {
+	origin.position = a_origin.getGlobalPosition();
+	origin.direction = a_origin.getGlobalRight();
+
 	m_current = origin;
 	reflections[0] = origin;
 	nReflections = 1;
