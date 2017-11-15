@@ -26,36 +26,43 @@ int main()
 	player.collider.box.extents = {.5,.5};
 
 	Wall walls[WALL_AMOUNT];
+	//platform 1
 	walls[0].transform.position = { 220,300 };
 	walls[0].transform.dimension = {400,10};
 	walls[0].collider.box.extents = { .5,.5 };
 	//walls[0].sprite.handle = sfw::loadTextureMap("../resources/Giant_Tree.png");
 
+	//platform 2
 	walls[1].transform.position = { 750,600 };
 	walls[1].transform.dimension = { 250,10 };
 	walls[1].collider.box.extents = { .5,.5 };
 	//walls[1].sprite.handle = walls[0].sprite.handle;
 
+	//platform 3
 	walls[2].transform.position = { 40,850 };
 	walls[2].transform.dimension = { 60,10 };
 	walls[2].collider.box.extents = { .5,.5 };
 	//walls[2].sprite.handle = walls[0].sprite.handle;
 
+	//wall left
 	walls[3].transform.position = { 0,500 };
 	walls[3].transform.dimension = { 10,1000 };
 	walls[3].collider.box.extents = { .5,.5 };
 	//walls[3].sprite.handle = walls[0].sprite.handle;
 
+	//wall right
 	walls[4].transform.position = { 1000,500 };
 	walls[4].transform.dimension = { 10,1000 };
 	walls[4].collider.box.extents = { .5,.5 };
 	//walls[4].sprite.handle = walls[0].sprite.handle;
 
+	//wall bottom
 	walls[5].transform.position = { 500,0 };
 	walls[5].transform.dimension = { 1000,10 };
 	walls[5].collider.box.extents = { .5,.5 };
 	//walls[5].sprite.handle = walls[0].sprite.handle;
 
+	//wall top
 	walls[6].transform.position = { 500,1000 };
 	walls[6].transform.dimension = { 1000,10 };
 	walls[6].collider.box.extents = { .5,.5 };
