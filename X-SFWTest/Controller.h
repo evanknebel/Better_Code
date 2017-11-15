@@ -22,13 +22,13 @@ public:
 	void poll(Rigidbody &rb, const Transform &t)
 	{
 
-		if (sfw::getKey('W'))rb.force +=
+		if (sfw::getKey(265))rb.force +=
 			norm(t.getGlobalTransform()[1].xy) * speed;
 		
-		if (sfw::getKey('A'))rb.torque += turningSpeed;
-		if (sfw::getKey('D'))rb.torque += -turningSpeed;
+		if (sfw::getKey(263))rb.torque += turningSpeed;
+		if (sfw::getKey(262))rb.torque += -turningSpeed;
 
-		if (sfw::getKey(' ')) //breaking force
+		if (sfw::getKey(264)) //breaking force
 		{
 			rb.force += -rb.velocity * brakePower;
 			rb.torque += -rb.angularVelocity * brakePower;

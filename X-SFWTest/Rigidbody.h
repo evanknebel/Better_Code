@@ -25,11 +25,11 @@ public:
 				force{ 0,0 },
 				impulse{ 0,0 },
 				mass(1),
-				drag(.25f),
+				drag(0.25f),
 				angularVelocity(0),
 				angularAcceleration(0),
 				torque(0),
-				angularDrag(.25f)
+				angularDrag(0.25f)
 	{
 	
 	}
