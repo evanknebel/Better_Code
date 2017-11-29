@@ -58,16 +58,11 @@ T clamp(T clamperLow, T clampee, T clamperHigh)
 }
 
 template<typename T>
-T swap(T lhs, T rhs)
+void swap(T& lhs, T& rhs)
 {
-	print(lhs);
-	print(rhs);
 	T temp = lhs;
 	lhs = rhs;
 	rhs = temp;
-	print(lhs);
-	print(rhs);
-	return NULL;
 }
 
 //class person
@@ -109,7 +104,16 @@ int main()
 
 	print(clamp(1, 3, 5));
 
-	print(swap("g", "Q"));
+	float a = 5.1f;
+	float b = 7.5f;
+
+	print(a);
+	print(b);
+
+	swap(a, b);
+
+	print(a);
+	print(b);
 
 
 	while (true) {}	// keep the window open
