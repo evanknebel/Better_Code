@@ -9,9 +9,9 @@ T add(T lhs, T rhs)
 	return lhs + rhs;
 }
 template<typename T>
-void print(T a)
+void print(T value)
 {
-	std::cout << a << std::endl;
+	std::cout << value << std::endl;
 }
 
 template<typename T>
@@ -57,20 +57,33 @@ T clamp(T clamperLow, T clampee, T clamperHigh)
 	}
 }
 
-class person
+template<typename T>
+T swap(T lhs, T rhs)
 {
-public:
-	char name;
-	int age;
-	float hight;
-
-};
-
-person Joe
-{
-	
-
+	print(lhs);
+	print(rhs);
+	T temp = lhs;
+	lhs = rhs;
+	rhs = temp;
+	print(lhs);
+	print(rhs);
+	return NULL;
 }
+
+//class person
+//{
+//public:
+//	char name;
+//	int age;
+//	float hight;
+//
+//};
+//
+//person Joe
+//{
+//	
+//
+//}
 
 int main()
 {
@@ -96,7 +109,9 @@ int main()
 
 	print(clamp(1, 3, 5));
 
-									   // keep the window open
-	while (true) {}
+	print(swap("g", "Q"));
+
+
+	while (true) {}	// keep the window open
 	return 0;
 }
