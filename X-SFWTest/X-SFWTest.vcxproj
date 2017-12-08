@@ -128,9 +128,9 @@
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DrawShape.cpp" />
+    <ClCompile Include="jumper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGuy.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +138,8 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DrawShape.h" />
     <ClInclude Include="jumper.h" />
+    <ClInclude Include="jumperController.h" />
     <ClInclude Include="MyGuy.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="transform.h" />

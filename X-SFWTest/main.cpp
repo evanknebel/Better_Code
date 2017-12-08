@@ -1,11 +1,8 @@
-
-
 #include "sfwdraw.h"
-#include "Player.h"
-#include "DrawShape.h"
-#include <Windows.h>
 
+#include "DrawShape.h"
 #include "jumper.h"
+#include "jumperController.h"
 
 
 // scrollPos   += scrollDelta on update
@@ -25,13 +22,6 @@ int main()
 	jumper.transform.dimension = vec2{ 50, 50 };
 	jumper.transform.position = vec2{ 700, 500 };
 	jumper.collider.box.extents = {.5,.5};
-
-	Player player;
-
-	player.sprite = sfw::loadTextureMap("../resources/classic_ship.png");
-	player.transform.dimension = vec2{64, 64};
-	player.transform.position = vec2{ 400,300 };
-	player.collider.box.extents = {.5,.5};
 
 	Wall walls[WALL_AMOUNT];
 	//platform 1
@@ -73,15 +63,15 @@ int main()
 	{
 		float dt = sfw::getDeltaTime();
 
-		// update controllers0
-		player.controller.poll(player.rigidbody, player.transform);
+		// update controllers
+		jumper.controller.poll(jumper.transform, jumper.rigidbody);
 
 		// update rigibodies
-		player.rigidbody.integrate(player.transform, dt);
+		jumper.rigidbody.force += vec2{ 0, -9.86f };
 		jumper.rigidbody.integrate(jumper.transform, dt);
 
 		// draw stuff
-		player.sprite.draw(player.transform);
+
 
 		jumper.sprite.draw(jumper.transform);
 
@@ -91,15 +81,10 @@ int main()
 		// Collision resolution
 		for (int i = 0; i < WALL_AMOUNT; ++i)
 		{
-			doCollision(player, walls[i]);
+			doCollision(jumper, walls[i]);
 		}
 
 		// Debug boxes
-		// for first one
-		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);
-		for (int i = 0; i < WALL_AMOUNT; ++i)
-			drawAABB(walls[i].collider.getGlobalBox(walls[i].transform), RED);
-
 		// for jumper
 		drawAABB(jumper.collider.getGlobalBox(jumper.transform), MAGENTA);
 		for (int i = 0; i < WALL_AMOUNT; ++i)
