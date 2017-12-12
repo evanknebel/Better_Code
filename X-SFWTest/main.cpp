@@ -17,6 +17,8 @@
 
 
 const int WALL_AMOUNT = 7;
+const int COLLECTABLE_AMOUNT = 3;
+const int COLLECTABLE_SIZE = 20;
 
 int main()
 {
@@ -31,11 +33,21 @@ int main()
 	jumper.transform.position = vec2{ 700, 1000 };
 	jumper.collider.box.extents = {.5,.5};
 
-	Collectable collectables[3];
+	Collectable collectables[COLLECTABLE_AMOUNT];
 	//item 1
-	collectables[0].transform.position = { 500,500 };
-	collectables[0].transform.dimension = { 30,30 };
+	collectables[0].transform.position = { 200,350 };
+	collectables[0].transform.dimension = { COLLECTABLE_SIZE,COLLECTABLE_SIZE };
 	collectables[0].collider.box.extents = { .5,.5 };
+
+	//item 2
+	collectables[1].transform.position = { 800,650 };
+	collectables[1].transform.dimension = { COLLECTABLE_SIZE,COLLECTABLE_SIZE };
+	collectables[1].collider.box.extents = { .5,.5 };
+
+	//item 3
+	collectables[2].transform.position = { 40,870 };
+	collectables[2].transform.dimension = { COLLECTABLE_SIZE,COLLECTABLE_SIZE };
+	collectables[2].collider.box.extents = { .5,.5 };
 
 	Wall walls[WALL_AMOUNT];
 	//platform 1
@@ -108,8 +120,12 @@ int main()
 		for (int i = 0; i < WALL_AMOUNT; ++i)
 			drawAABB(walls[i].collider.getGlobalBox(walls[i].transform), RED);
 		// for collectable
-		for (int i = 0; i < 1; ++i)
-			drawAABB(collectables[i].collider.getGlobalBox(collectables[i].transform), RED);
+		for (int i = 0; i < COLLECTABLE_AMOUNT; ++i)
+		{
+			collectables[i].draw();
+			doCollision(jumper, collectables[i]);
+		}
+
 	}	
 	sfw::termContext();
 }

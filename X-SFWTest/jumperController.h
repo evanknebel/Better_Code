@@ -13,7 +13,7 @@ public:
 
 	bool doAction = false;
 	
-	bool isGrounded = true;
+	bool isGrounded = false;
 
 	void poll(Transform &transform, Rigidbody &rigidbody)
 	{

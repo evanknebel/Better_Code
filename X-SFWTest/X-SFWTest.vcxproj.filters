@@ -33,6 +33,9 @@
     <ClCompile Include="jumper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="collectable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="transform.h">
