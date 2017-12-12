@@ -3,7 +3,7 @@
 #include "DrawShape.h"
 #include "jumper.h"
 #include "jumperController.h"
-
+#include "collectable.h"
 
 // scrollPos   += scrollDelta on update
 // scrollDelta += scrollQueue on update
@@ -11,17 +11,31 @@
 // getScrollPos
 // getScrollDelta
 
+
+
+
+
+
 const int WALL_AMOUNT = 7;
 
 int main()
 {
 	sfw::initContext(1000,1000);
 
+	sfw::drawCircle(500, 500, 30);
+
+
 	Jumper jumper;
 	jumper.sprite = sfw::loadTextureMap("../resources/classic_ship.png");
 	jumper.transform.dimension = vec2{ 50, 50 };
-	jumper.transform.position = vec2{ 700, 500 };
+	jumper.transform.position = vec2{ 700, 1000 };
 	jumper.collider.box.extents = {.5,.5};
+
+	Collectable collectables[3];
+	//item 1
+	collectables[0].transform.position = { 500,500 };
+	collectables[0].transform.dimension = { 30,30 };
+	collectables[0].collider.box.extents = { .5,.5 };
 
 	Wall walls[WALL_AMOUNT];
 	//platform 1
@@ -67,7 +81,8 @@ int main()
 		jumper.controller.poll(jumper.transform, jumper.rigidbody);
 
 		// update rigibodies
-		jumper.rigidbody.force += vec2{ 0, -9.86f };
+		// gravity
+		jumper.rigidbody.force += vec2{ 0, -600.0f };
 		jumper.rigidbody.integrate(jumper.transform, dt);
 
 		// draw stuff
@@ -84,11 +99,17 @@ int main()
 			doCollision(jumper, walls[i]);
 		}
 
+
+
 		// Debug boxes
 		// for jumper
 		drawAABB(jumper.collider.getGlobalBox(jumper.transform), MAGENTA);
+		// for walls
 		for (int i = 0; i < WALL_AMOUNT; ++i)
 			drawAABB(walls[i].collider.getGlobalBox(walls[i].transform), RED);
+		// for collectable
+		for (int i = 0; i < 1; ++i)
+			drawAABB(collectables[i].collider.getGlobalBox(collectables[i].transform), RED);
 	}	
 	sfw::termContext();
 }

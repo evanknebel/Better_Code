@@ -5,6 +5,7 @@
 #include "Collider.h"
 #include "Sprite.h"
 #include "jumperController.h"
+#include "collectable.h"
 
 class Jumper
 {
@@ -26,3 +27,4 @@ public:
 
 bool doCollision(Jumper &jumper, const Wall & wall);
 
+bool doCollision(Jumper &jumper, const Collectable & collectable);
