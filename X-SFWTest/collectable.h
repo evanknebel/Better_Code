@@ -6,6 +6,8 @@
 #include "Sprite.h"
 //#include "jumperController.h"
 
+
+
 class Collectable
 {
 public:

@@ -25,7 +25,7 @@ public:
 				force{ 0,0 },
 				impulse{ 0,0 },
 				mass(1),
-				drag(1.0f),
+				drag(0),
 				angularVelocity(0),
 				angularAcceleration(0),
 				torque(0),

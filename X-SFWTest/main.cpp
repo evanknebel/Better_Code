@@ -1,5 +1,4 @@
 #include "sfwdraw.h"
-
 #include "DrawShape.h"
 #include "jumper.h"
 #include "jumperController.h"
@@ -11,14 +10,11 @@
 // getScrollPos
 // getScrollDelta
 
-
-
-
-
-
 const int WALL_AMOUNT = 7;
 const int COLLECTABLE_AMOUNT = 3;
 const int COLLECTABLE_SIZE = 20;
+
+
 
 int main()
 {
@@ -98,8 +94,6 @@ int main()
 		jumper.rigidbody.integrate(jumper.transform, dt);
 
 		// draw stuff
-
-
 		jumper.sprite.draw(jumper.transform);
 
 		for (int i = 0; i < WALL_AMOUNT; ++i)
@@ -111,20 +105,20 @@ int main()
 			doCollision(jumper, walls[i]);
 		}
 
-
-
 		// Debug boxes
 		// for jumper
 		drawAABB(jumper.collider.getGlobalBox(jumper.transform), MAGENTA);
 		// for walls
 		for (int i = 0; i < WALL_AMOUNT; ++i)
 			drawAABB(walls[i].collider.getGlobalBox(walls[i].transform), RED);
-		// for collectable
+		// for collectables
 		for (int i = 0; i < COLLECTABLE_AMOUNT; ++i)
 		{
 			collectables[i].draw();
 			doCollision(jumper, collectables[i]);
 		}
+
+
 
 	}	
 	sfw::termContext();

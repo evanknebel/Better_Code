@@ -5,29 +5,44 @@
 #include "sfwdraw.h"
 
 const int LATERAL_SPEED = 800;
-const int MAX_JUMP_SPEED = 850;
+const int MAX_JUMP_SPEED = 620;
+const int SMALL_JUMP_SPEED = 100;
 
 class JumperController
 {
 public:
 
-	bool doAction = false;
-	
+	bool doActionBig = false;
+	bool doActionSmall = true;
+
 	bool isGrounded = false;
 
 	void poll(Transform &transform, Rigidbody &rigidbody)
 	{
-		if (sfw::getKey(265) && doAction == false && isGrounded == true)
+		//big jump
+		if (sfw::getKey(265) && doActionBig == false && isGrounded == true)
 		{
 			rigidbody.impulse += vec2{ 0, MAX_JUMP_SPEED };
 			
-			doAction = true;
+			doActionBig = true;
+			isGrounded = false;
+		}
+		//small jump
+		if (sfw::getKey(264) && doActionSmall == false && isGrounded == true)
+		{
+			rigidbody.impulse += vec2{ 0, SMALL_JUMP_SPEED };
+
+			doActionSmall = true;
 			isGrounded = false;
 		}
 
-		if (doAction == true && !sfw::getKey(265))
+		if (doActionBig == true && !sfw::getKey(265))
 		{
-			doAction = false;
+			doActionBig = false;
+		}
+		if (doActionSmall == true && !sfw::getKey(264))
+		{
+			doActionSmall = false;
 		}
 
 		if (sfw::getKey(262))
