@@ -16,6 +16,7 @@ public:
 	Collider collider;
 
 	bool isCollected = false;
+	bool enabled = false;
 	void draw();
 
 };

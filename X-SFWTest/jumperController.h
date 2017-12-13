@@ -4,7 +4,7 @@
 #include "Rigidbody.h"
 #include "sfwdraw.h"
 
-const int LATERAL_SPEED = 800;
+const int LATERAL_SPEED = 500;
 const int MAX_JUMP_SPEED = 620;
 const int SMALL_JUMP_SPEED = 100;
 
@@ -14,7 +14,6 @@ public:
 
 	bool doActionBig = false;
 	bool doActionSmall = true;
-
 	bool isGrounded = false;
 
 	void poll(Transform &transform, Rigidbody &rigidbody)

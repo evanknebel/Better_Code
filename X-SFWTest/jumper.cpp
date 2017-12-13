@@ -1,7 +1,7 @@
 #include "jumper.h"
 #include "collectable.h"
 #include <iostream>
-int amountCollected = 0;
+
 
 bool doCollision(Jumper &jumper, const Wall & wall)
 {
@@ -42,10 +42,7 @@ bool doCollision(Jumper &jumper, const Wall & wall)
 		return false;
 	}
 
-	if (amountCollected >= 3)
-	{
-
-	}
+	
 }
 
 bool doCollision(Jumper &jumper, Collectable & collectable)
@@ -54,7 +51,7 @@ bool doCollision(Jumper &jumper, Collectable & collectable)
 
 	if (hit.penetrationDepth > 0)
 	{
-		amountCollected++;
+		
 		collectable.isCollected = true;
 		return true;
 	}

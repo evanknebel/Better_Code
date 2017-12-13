@@ -3,6 +3,7 @@
 #include "jumper.h"
 #include "jumperController.h"
 #include "collectable.h"
+#include <iostream>
 
 // scrollPos   += scrollDelta on update
 // scrollDelta += scrollQueue on update
@@ -14,14 +15,18 @@ const int WALL_AMOUNT = 7;
 const int COLLECTABLE_AMOUNT = 3;
 const int COLLECTABLE_SIZE = 20;
 
-
+int amountCollected = 0;
 
 int main()
 {
+
+
+
 	sfw::initContext(1000,1000);
 
 	sfw::drawCircle(500, 500, 30);
 
+	unsigned int font = sfw::loadTextureMap("../resources/fontmap.png", 16, 16);
 
 	Jumper jumper;
 	jumper.sprite = sfw::loadTextureMap("../resources/classic_ship.png");
@@ -116,6 +121,16 @@ int main()
 		{
 			collectables[i].draw();
 			doCollision(jumper, collectables[i]);
+
+			if (collectables[0].isCollected == true && collectables[1].isCollected == true && collectables[2].isCollected == true)
+			{
+				amountCollected +=3 ;
+			}
+			if (amountCollected >= 3)
+			{
+				std::cout << "winner winner chicken dinner" << std::endl;
+				sfw::drawString(font, "winner winner chicken dinner", 300, 500, 10, 20);
+			}
 		}
 
 
